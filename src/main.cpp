@@ -2,9 +2,14 @@
 #include <bn_backdrop.h>
 #include <bn_color.h>
 #include <bn_keypad.h>
+#include <bn_sprite_ptr.h>
+
+#include "bn_sprite_items_paddle.h"
 
 int main() {
     bn::core::init();
+
+    bn::sprite_ptr paddle = bn::sprite_items::paddle.create_sprite();
 
     bn::backdrop::set_color(bn::color(31, 0, 0));
 
