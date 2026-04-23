@@ -15,10 +15,13 @@ bn::fixed_point Paddle::_position() {
     return bn::fixed_point(cos * _radius, sin * _radius);
 }
 
+
+
 void Paddle::rotate(bn::fixed angle) {
     _angle += angle;
     while(_angle >= 360) _angle -= 360;
     while(_angle < 0) _angle += 360;
 
     _sprite.set_position(_position());
+    _sprite.set_rotation_angle(360 - _angle);
 }
