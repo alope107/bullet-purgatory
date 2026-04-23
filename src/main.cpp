@@ -4,14 +4,18 @@
 #include <bn_keypad.h>
 #include <bn_sprite_ptr.h>
 
+#include "Bullet.h"
 #include "Paddle.h"
 
 #include "bn_sprite_items_paddle.h"
+#include "bn_sprite_items_bullet.h"
 
 int main() {
     bn::core::init();
 
     Paddle paddle(50);
+
+    Bullet bullet({30, 20}, {1, 2});
 
     bn::fixed rotate_speed = 3;
 
@@ -24,6 +28,7 @@ int main() {
         if(bn::keypad::right_held()) {
             paddle.rotate(-rotate_speed);
         }
+        bullet.update();
         bn::core::update();
     }
 }
