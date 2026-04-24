@@ -12,8 +12,8 @@ Paddle::Paddle(Manager& manager, bn::fixed radius, bn::fixed rotate_speed, bn::f
     _radius(radius),
     _rotate_speed(rotate_speed),
     _angle(angle),
-    _sprite(bn::sprite_items::paddle.create_sprite(_position()))
-{
+    _sprite(bn::sprite_items::paddle.create_sprite(_position())) {
+    _sprite.set_z_order(-1);
 }
 
 void Paddle::update() {
@@ -46,7 +46,7 @@ void Paddle::_rotate(bn::fixed angle) {
 }
 
 void Paddle::_shoot() {
-    bn::fixed shootSpeed = 3; // TODO: put elsewhere
+    bn::fixed shootSpeed = 4; // TODO: put elsewhere
     auto [sin, cos] = bn::degrees_sin_and_cos(_angle);
     _manager.createBullet(_sprite.position(), {-cos * shootSpeed, -sin * shootSpeed});
 }

@@ -11,5 +11,5 @@ Projectile::Projectile(bn::fixed_point position,
 
 bool Projectile::update() {
     _sprite.set_position(_sprite.position() + _velocity);
-    return !outOfBounds(_sprite.position()); // mark bullet for removal if it goes offscreen
+    return !outOfBounds(_sprite.position()); // mark projectile for removal if it goes offscreen
 }

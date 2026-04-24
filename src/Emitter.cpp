@@ -11,7 +11,7 @@ Emitter::Emitter(Manager& manager, bn::fixed shotProb) :
 void Emitter::update() {
     if(_manager.rng().get_fixed(1) < _shotProb) {
         // TODO: Put constants elsewhere
-        bn::fixed MAX_TARGET_SPEED = 1; 
+        bn::fixed MAX_TARGET_SPEED = .5; 
 
         int HALF_SPAWN_SQUARE = 10;
         bn::fixed_point position = {_manager.rng().get_int(-HALF_SPAWN_SQUARE, HALF_SPAWN_SQUARE),
