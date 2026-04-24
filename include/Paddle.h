@@ -3,18 +3,19 @@
 #include <bn_fixed.h>
 #include <bn_sprite_ptr.h>
 
-#include "Bullet.h"
+#include "Projectile.h"
 
-class Paddle {
-    public:
-        Paddle(bn::fixed radius, bn::fixed angle=0);
-        void rotate(bn::fixed deg); // positive degrees is CCW, negative CW
-        Bullet shoot();
-    private:
-        bn::fixed_point _position();
-        
-        bn::fixed _radius;
-        bn::fixed _angle;
-        bn::sprite_ptr _sprite;
+class Paddle
+{
+public:
+    Paddle(bn::fixed radius, bn::fixed angle = 0);
+    void rotate(bn::fixed deg); // positive degrees is CCW, negative CW
+    Projectile shoot();
 
+private:
+    bn::fixed_point _position();
+
+    bn::fixed _radius;
+    bn::fixed _angle;
+    bn::sprite_ptr _sprite;
 };
