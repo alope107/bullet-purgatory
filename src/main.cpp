@@ -13,7 +13,7 @@
 
 int main() {
     bn::core::init();
-    Manager manager(60, 5, .005);
+    Manager manager(70, 5, .005);
 
     while (true) {
         manager.update();

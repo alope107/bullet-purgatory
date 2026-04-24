@@ -32,6 +32,8 @@ void Manager::update() {
             it++;
         }
     }
+
+    // TODO: Get entropy from user input to give to RNG
 }
 
 bool Manager::createBullet(bn::fixed_point position, bn::fixed_point velocity) {
@@ -41,7 +43,7 @@ bool Manager::createBullet(bn::fixed_point position, bn::fixed_point velocity) {
 }
 
 bool Manager::createTarget(bn::fixed_point position, bn::fixed_point velocity) {
-    if(_bullets.full()) return false;
-    _bullets.emplace_back(position, velocity, bn::sprite_items::target);
+    if(_targets.full()) return false;
+    _targets.emplace_back(position, velocity, bn::sprite_items::target);
     return true;
 }
