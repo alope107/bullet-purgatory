@@ -16,10 +16,9 @@ static constexpr int MAX_BULLETS = 30;
 int main() {
     bn::core::init();
 
-    Paddle paddle(50);
+    Paddle paddle(70);
 
     bn::fixed rotate_speed = 3;
-
 
     bn::vector<Bullet, MAX_BULLETS> bullets = {};
 
@@ -35,8 +34,12 @@ int main() {
                 bullets.push_back(paddle.shoot());
             }
         }
-        for(Bullet &bullet : bullets) {
-            bullet.update();
+        for(auto it = bullets.begin(); it != bullets.end();) {
+            if(!it->update()) {
+                it = bullets.erase(it);
+            } else {
+                it++;
+            }
         }
         bn::core::update();
     }

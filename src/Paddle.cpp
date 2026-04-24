@@ -16,7 +16,6 @@ bn::fixed_point Paddle::_position() {
 }
 
 
-
 void Paddle::rotate(bn::fixed angle) {
     // Possible optimization: use 256 circle units instead for east LUT and masking
     _angle += angle;
