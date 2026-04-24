@@ -10,15 +10,23 @@ Emitter::Emitter(Manager& manager, bn::fixed shotProb) :
 
 void Emitter::update() {
     if(_manager.rng().get_fixed(1) < _shotProb) {
-        bn::fixed MAX_TARGET_SPEED = 2; // TODO: Put elsewhere
+        // TODO: Put constants elsewhere
+        bn::fixed MAX_TARGET_SPEED = 1; 
+
+        int HALF_SPAWN_SQUARE = 10;
+        bn::fixed_point position = {_manager.rng().get_int(-HALF_SPAWN_SQUARE, HALF_SPAWN_SQUARE),
+                                    _manager.rng().get_int(-HALF_SPAWN_SQUARE, HALF_SPAWN_SQUARE)
+                                   };
+
         
         bn::fixed speed = _manager.rng().get_fixed(MAX_TARGET_SPEED);
         int angle = _manager.rng().get_int(360);
-        
+                           
         auto [sin, cos] = bn::degrees_sin_and_cos(angle);
+        bn::fixed_point velocity =  {cos * speed, sin * speed};
         _manager.createTarget(
-            {0, 0},
-            {cos * speed, sin * speed}
+            position,
+            velocity
         );
     }
 }
