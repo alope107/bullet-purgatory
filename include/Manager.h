@@ -13,7 +13,7 @@ static constexpr int MAX_TARGETS = 50;
 
 class Manager {
 public:
-    Manager(bn::fixed paddle_radius, bn::fixed paddle_speed);
+    Manager(bn::fixed paddleRadius, bn::fixed paddleSpeed, bn::fixed emitterShotProb);
 
     bn::random& rng();
     void update();

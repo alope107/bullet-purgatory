@@ -3,10 +3,10 @@
 #include "bn_sprite_items_bullet.h"
 #include "bn_sprite_items_target.h"
 
-Manager::Manager(bn::fixed paddle_radius, bn::fixed paddle_speed) :
+Manager::Manager(bn::fixed paddleRadius, bn::fixed paddleSpeed, bn::fixed emitterShotProb) :
     _rng(bn::random()),
-    _paddle(*this, paddle_radius, paddle_speed),
-    _emitter(*this)
+    _paddle(*this, paddleRadius, paddleSpeed),
+    _emitter(*this, emitterShotProb)
 {}
 
 bn::random& Manager::rng() {return _rng;}
