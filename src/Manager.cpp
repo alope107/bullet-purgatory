@@ -3,16 +3,16 @@
 #include "bn_sprite_items_bullet.h"
 #include "bn_sprite_items_target.h"
 
-Manager::Manager(bn::fixed paddleRadius, bn::fixed paddleSpeed, bn::fixed emitterShotProb) :
+Manager::Manager(bn::fixed shipRadius, bn::fixed shipSpeed, bn::fixed emitterShotProb) :
     _rng(bn::random()),
-    _paddle(*this, paddleRadius, paddleSpeed),
+    _ship(*this, shipRadius, shipSpeed),
     _emitter(*this, emitterShotProb)
 {}
 
 bn::random& Manager::rng() {return _rng;}
 
 void Manager::update() {
-    _paddle.update();
+    _ship.update();
     _emitter.update();
 
     // TODO: refactor duplicated projectile code

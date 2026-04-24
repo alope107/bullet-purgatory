@@ -7,9 +7,9 @@
 
 class Manager;
 
-class Paddle {
+class Ship {
 public:
-    Paddle(Manager &manager, bn::fixed radius, bn::fixed rotate_speed, bn::fixed angle = 0);
+    Ship(Manager &manager, bn::fixed radius, bn::fixed rotateSpeed, bn::fixed angle = 0);
     void update();
     
 
@@ -20,7 +20,7 @@ private:
     void _shoot();
 
     bn::fixed _radius;
-    bn::fixed _rotate_speed;
+    bn::fixed _rotateSpeed;
     bn::fixed _angle;
     bn::sprite_ptr _sprite;
 };

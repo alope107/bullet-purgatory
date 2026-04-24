@@ -1,39 +1,39 @@
 #include <bn_math.h>
 #include <bn_keypad.h>
 
-#include "Paddle.h"
+#include "Ship.h"
 #include "Manager.h"
 
-#include "bn_sprite_items_paddle.h"
+#include "bn_sprite_items_ship.h"
 #include "bn_sprite_items_bullet.h"
 
-Paddle::Paddle(Manager& manager, bn::fixed radius, bn::fixed rotate_speed, bn::fixed angle) : 
+Ship::Ship(Manager& manager, bn::fixed radius, bn::fixed rotateSpeed, bn::fixed angle) : 
     _manager(manager),
     _radius(radius),
-    _rotate_speed(rotate_speed),
+    _rotateSpeed(rotateSpeed),
     _angle(angle),
-    _sprite(bn::sprite_items::paddle.create_sprite(_position())) {
+    _sprite(bn::sprite_items::ship.create_sprite(_position())) {
     _sprite.set_z_order(-1);
 }
 
-void Paddle::update() {
+void Ship::update() {
     if (bn::keypad::left_held()) {
-        _rotate(_rotate_speed);
+        _rotate(_rotateSpeed);
     }
     if (bn::keypad::right_held()) {
-        _rotate(-_rotate_speed);
+        _rotate(-_rotateSpeed);
     }
     if (bn::keypad::a_pressed()) {
         _shoot();
     }
 }
 
-bn::fixed_point Paddle::_position() {
+bn::fixed_point Ship::_position() {
     auto [sin, cos] = bn::degrees_sin_and_cos(_angle);
     return bn::fixed_point(cos * _radius, sin * _radius);
 }
 
-void Paddle::_rotate(bn::fixed angle) {
+void Ship::_rotate(bn::fixed angle) {
     // Possible optimization: use 256 circle units instead for east LUT and masking
     _angle += angle;
     while (_angle >= 360)
@@ -45,7 +45,7 @@ void Paddle::_rotate(bn::fixed angle) {
     _sprite.set_rotation_angle(360 - _angle);
 }
 
-void Paddle::_shoot() {
+void Ship::_shoot() {
     bn::fixed shootSpeed = 4; // TODO: put elsewhere
     auto [sin, cos] = bn::degrees_sin_and_cos(_angle);
     _manager.createBullet(_sprite.position(), {-cos * shootSpeed, -sin * shootSpeed});

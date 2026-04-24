@@ -5,7 +5,7 @@
 #include <bn_list.h>
 
 #include "Emitter.h"
-#include "Paddle.h"
+#include "Ship.h"
 #include "Projectile.h"
 
 static constexpr int MAX_BULLETS = 50;
@@ -13,7 +13,7 @@ static constexpr int MAX_TARGETS = 50;
 
 class Manager {
 public:
-    Manager(bn::fixed paddleRadius, bn::fixed paddleSpeed, bn::fixed emitterShotProb);
+    Manager(bn::fixed shipRadius, bn::fixed shipSpeed, bn::fixed emitterShotProb);
 
     bn::random& rng();
     void update();
@@ -23,7 +23,7 @@ public:
     
 private:
     bn::random _rng;
-    Paddle _paddle;
+    Ship _ship;
     Emitter _emitter;
     bn::list<Projectile, MAX_BULLETS> _bullets;
     bn::list<Projectile, MAX_TARGETS> _targets;
